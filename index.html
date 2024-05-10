@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let userAccount = {
+    accountNumber: "123456",
+    balance: 1000
+};
+
+let recipientAccount = {
+    accountNumber: "654321",
+    balance: 500
+};
+function transferMoney() {
+    let userAccountNumber = prompt("Enter your account number:");
+    let recipientAccountNumber = prompt("Enter recipient's account number:");
+    
+    if (userAccountNumber !== userAccount.accountNumber || recipientAccountNumber !== recipientAccount.accountNumber) {
+        alert("Invalid account number(s). Please try again.");
+        return;
+    }
+    
+    let proceed = confirm("Do you want to proceed with the transaction?");
+    
+    if (proceed) {
+        let transferAmount = parseFloat(prompt("Enter the amount to transfer:"));
+        
+        if (transferAmount > userAccount.balance) {
+            alert("Insufficient funds.");
+            return;
+        }
+      
+        userAccount.balance -= transferAmount;
+        recipientAccount.balance += transferAmount;
+        
+        alert("Transaction successful!");
+        console.log("User balance:", userAccount.balance);
+        console.log("Recipient balance:", recipientAccount.balance);
+    } else {
+        alert("Transaction canceled.");
+    }
+}
+transferMoney();
+
+</script>
+</html>
